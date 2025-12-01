@@ -27,7 +27,7 @@ struct Instruction {
 }
 
 // Counts anytime the dial goes through zero
-fn count_zeroes_method_0x434c49434b(input: &Vec<Instruction>) -> i32 {
+fn count_zeroes_method_0x434c49434b(input: &[Instruction]) -> i32 {
     let mut zeroes = 0;
     let mut dial_position = DIAL_START; 
 
@@ -51,7 +51,7 @@ fn count_zeroes_method_0x434c49434b(input: &Vec<Instruction>) -> i32 {
     zeroes
 }
 
-fn count_zeroes(input: &Vec<Instruction>) -> i32 {
+fn count_zeroes(input: &[Instruction]) -> i32 {
     let mut zeroes = 0;
     let mut dial_position = DIAL_START; 
 
