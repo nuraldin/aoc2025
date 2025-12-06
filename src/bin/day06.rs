@@ -1,4 +1,6 @@
 /*
+    day06:
+
     I need to help cephalopods do their math homework
 
     The puzzle input consists of a list of problems.
@@ -20,20 +22,19 @@
 
     is read as 7, 25, 111
 */
+use aoc2025::time_it;
+
 fn main() {
     let input = include_str!("../inputs/day06.txt");
 
     let parsed_one = parse_columns_and_ops(input);
     let parsed_two = parse_vertical_columns_and_ops(input);
 
-    println!(
-        "The grand total found for part one: {}",
-        do_calculations(parsed_one)
-    );
-    println!(
-        "The grand total found for part two: {}",
-        do_calculations(parsed_two)
-    );
+    let res_one = time_it!("part one: ", do_calculations(parsed_one));
+    let res_two = time_it!("part two: ", do_calculations(parsed_two));
+
+    println!("The grand total found for part one: {}", res_one);
+    println!("The grand total found for part two: {}", res_two);
 }
 
 fn do_calculations((columns, ops): (Vec<Vec<i64>>, Vec<char>)) -> u128 {
