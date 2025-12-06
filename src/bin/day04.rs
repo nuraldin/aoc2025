@@ -1,11 +1,11 @@
 /*
     day04:
-    
+
     There are rolls of papers given in the input in locations.
     A roll is accessible if less than four rolls of papers are around in the 8 directions.
 
     Part 1:
-    
+
     How many are accessible?
 
     Part 2:
@@ -16,8 +16,14 @@ fn main() {
     let input = include_str!("../inputs/day04.txt");
     let grid = parse_grid(input);
 
-    println!("reachable roll of papers: {}", reachable_roll_of_papers(&grid));
-    println!("removable roll of papers: {}", removable_roll_of_papers(grid));
+    println!(
+        "reachable roll of papers: {}",
+        reachable_roll_of_papers(&grid)
+    );
+    println!(
+        "removable roll of papers: {}",
+        removable_roll_of_papers(grid)
+    );
 }
 
 fn removable_roll_of_papers(mut grid: Vec<Vec<char>>) -> i32 {
@@ -25,42 +31,42 @@ fn removable_roll_of_papers(mut grid: Vec<Vec<char>>) -> i32 {
 
     let rows = grid.len();
     let cols = grid[0].len();
-    
+
     let mut can_still_remove = true;
     while can_still_remove {
         let mut removed = 0;
 
         for row_idx in 0..rows {
-                for col_idx in 0..cols {
-                    let mut neighbours_count = 0;
-                    for (nr, nc) in neighbours(row_idx, col_idx, rows, cols) {
-                        if grid[nr][nc] == '@' {
-                            neighbours_count += 1;
-                        }
+            for col_idx in 0..cols {
+                let mut neighbours_count = 0;
+                for (nr, nc) in neighbours(row_idx, col_idx, rows, cols) {
+                    if grid[nr][nc] == '@' {
+                        neighbours_count += 1;
                     }
-
-                    if neighbours_count < 4 && grid[row_idx][col_idx] == '@' {
-                        grid[row_idx][col_idx] = '.';
-                        removed += 1;
-                        removable += 1;
-                    }   
                 }
+
+                if neighbours_count < 4 && grid[row_idx][col_idx] == '@' {
+                    grid[row_idx][col_idx] = '.';
+                    removed += 1;
+                    removable += 1;
+                }
+            }
         }
 
         if removed == 0 {
             can_still_remove = false;
-        }   
+        }
     }
-   
+
     removable
 }
 
-fn reachable_roll_of_papers(grid: &Vec<Vec<char>>) -> i32 {
+fn reachable_roll_of_papers(grid: &[Vec<char>]) -> i32 {
     let mut reachable_count = 0;
 
     let rows = grid.len();
     let cols = grid[0].len();
-    
+
     for row_idx in 0..rows {
         for col_idx in 0..cols {
             let mut neighbours_count = 0;
@@ -72,23 +78,28 @@ fn reachable_roll_of_papers(grid: &Vec<Vec<char>>) -> i32 {
 
             if neighbours_count < 4 && grid[row_idx][col_idx] == '@' {
                 reachable_count += 1;
-            }   
+            }
         }
-    }   
+    }
 
     reachable_count
 }
 
-fn neighbours(row: usize, col: usize, rows: usize, cols: usize) -> impl Iterator<Item = (usize, usize)> {
-        const DIRS: [(isize, isize); 8] = [
-        (-1,  0), // up
-        ( 1,  0), // down
-        ( 0, -1), // left
-        ( 0,  1), // right
+fn neighbours(
+    row: usize,
+    col: usize,
+    rows: usize,
+    cols: usize,
+) -> impl Iterator<Item = (usize, usize)> {
+    const DIRS: [(isize, isize); 8] = [
+        (-1, 0),  // up
+        (1, 0),   // down
+        (0, -1),  // left
+        (0, 1),   // right
         (-1, -1), // up-left
-        (-1,  1), // up-right
-        ( 1, -1), // down-left
-        ( 1,  1), // down-right
+        (-1, 1),  // up-right
+        (1, -1),  // down-left
+        (1, 1),   // down-right
     ];
 
     let r = row as isize;
@@ -137,7 +148,7 @@ mod tests {
         assert_eq!(reachable_roll_of_papers(&grid), 13);
     }
 
-        #[test]
+    #[test]
     fn test_second_part_example_input() {
         const TEST_INPUT: &str = r#"..@@.@@@@.
 @@@.@.@.@@

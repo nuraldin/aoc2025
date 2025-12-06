@@ -8,7 +8,7 @@
    The input is a sequence of rotations, one per line, which tells us how to open the safe
    They start with L or R to mark the direction the the distance which is the amount of clicks the dial should be rotated
    The dial starts always at position 50
-   
+
    Part 1:
 
    The password is the amount of times the dial is left pointing at 0 after any rotation in the sequence
@@ -29,7 +29,7 @@ struct Instruction {
 // Counts anytime the dial goes through zero
 fn count_zeroes_method_0x434c49434b(input: &[Instruction]) -> i32 {
     let mut zeroes = 0;
-    let mut dial_position = DIAL_START; 
+    let mut dial_position = DIAL_START;
 
     for instruction in input {
         let step = if instruction.direction == 'L' {
@@ -53,7 +53,7 @@ fn count_zeroes_method_0x434c49434b(input: &[Instruction]) -> i32 {
 
 fn count_zeroes(input: &[Instruction]) -> i32 {
     let mut zeroes = 0;
-    let mut dial_position = DIAL_START; 
+    let mut dial_position = DIAL_START;
 
     for instruction in input {
         if instruction.direction == 'L' {
@@ -63,7 +63,7 @@ fn count_zeroes(input: &[Instruction]) -> i32 {
         }
 
         dial_position = dial_position.rem_euclid(100);
-  
+
         if dial_position == 0 {
             zeroes += 1
         }
@@ -90,8 +90,14 @@ fn main() {
     let input = include_str!("../inputs/day01.txt");
     let instructions = parse_instructions(input);
 
-    println!("times the dial was left at 0: {}", count_zeroes(&instructions));
-    println!("times the dial passed over 0: {}", count_zeroes_method_0x434c49434b(&instructions));
+    println!(
+        "times the dial was left at 0: {}",
+        count_zeroes(&instructions)
+    );
+    println!(
+        "times the dial passed over 0: {}",
+        count_zeroes_method_0x434c49434b(&instructions)
+    );
 }
 
 #[cfg(test)]
@@ -133,7 +139,6 @@ mod tests {
         "#;
         let parsed = parse_instructions(example_input);
 
-        assert_eq!(count_zeroes_method_0x434c49434b(&parsed), 6); 
+        assert_eq!(count_zeroes_method_0x434c49434b(&parsed), 6);
     }
-
 }
