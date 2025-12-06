@@ -37,7 +37,7 @@ fn get_all_fresh(ranges: Vec<(u64, u64)>) -> u128 {
     let mut fresh = 0;
 
     for (start, end) in ranges {
-        fresh += (end as u128 - start as u128) + 1 
+        fresh += (end as u128 - start as u128) + 1
     }
 
     fresh
