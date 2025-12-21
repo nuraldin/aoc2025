@@ -1,3 +1,5 @@
+pub mod day08;
+
 #[macro_export]
 macro_rules! time_it {
     ($label:expr, $expr:expr) => {{
