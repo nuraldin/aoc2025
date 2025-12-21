@@ -6,10 +6,18 @@
     Part two:
 
 */
-use aoc2025::time_it;
+use aoc2025::day09::*;
 
 fn main() {
     let input = include_str!("../inputs/day09.txt");
+
+    let parsed_input = parse_locations(input);
+
+    let res_one = largest_area(&parsed_input);
+    // let res_two = time_it!("part two: ", count_timelines(&parsed));
+
+    println!("The largest rectangle size is {}", res_one);
+    // println!("The particle would generate {} timelines", res_two);
 }
 
 #[cfg(test)]
@@ -18,9 +26,9 @@ mod tests {
 
     #[test]
     fn test_part_one_example_input() {
-        let test_input = r#""#;
+        let parsed_input = parse_locations(TEST_INPUT);
 
-        assert_eq!(1, 1);
+        assert_eq!(largest_area(&parsed_input), 50);
     }
 
     #[test]

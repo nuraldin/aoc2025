@@ -1,5 +1,3 @@
-use std::collections::HashMap;
-
 /*
     day08:
 
@@ -23,7 +21,31 @@ use std::collections::HashMap;
 
 */
 use disjoint::DisjointSet;
+use std::collections::HashMap;
+
 pub const INPUT: &str = include_str!("inputs/day08.txt");
+
+pub const TEST_INPUT: &str = r#"162,817,812
+57,618,57
+906,360,560
+592,479,940
+352,342,300
+466,668,158
+542,29,236
+431,825,988
+739,650,466
+52,470,668
+216,146,977
+819,987,18
+117,168,530
+805,96,715
+346,949,466
+970,615,88
+941,993,340
+862,61,35
+984,92,344
+425,690,689
+"#;
 
 #[derive(Clone, Debug)]
 pub struct JunctionBox {
@@ -79,7 +101,6 @@ pub fn calculate_extension_size(junction_boxes: &[JunctionBox]) -> i64 {
 
     x1 * x2
 }
-
 
 /// Add shortest edges, skipping those that would connect vertices already in the same component.
 /// Returns the chosen edges (if you want to “mark joined pairs”) and a map root->component_size.
@@ -156,45 +177,4 @@ pub fn parse_locations(input: &str) -> Vec<JunctionBox> {
             JunctionBox { x, y, z }
         })
         .collect()
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    pub const TEST_INPUT: &str = r#"162,817,812
-57,618,57
-906,360,560
-592,479,940
-352,342,300
-466,668,158
-542,29,236
-431,825,988
-739,650,466
-52,470,668
-216,146,977
-819,987,18
-117,168,530
-805,96,715
-346,949,466
-970,615,88
-941,993,340
-862,61,35
-984,92,344
-425,690,689
-"#;
-
-    #[test]
-    fn test_day08_part_one_example_input() {
-        let junction_boxes = parse_locations(TEST_INPUT);
-
-        assert_eq!(calculate_circuits(&junction_boxes, 10), 40);
-    }
-
-    #[test]
-    fn test_day08_part_two_example_input() {
-        let junction_boxes = parse_locations(TEST_INPUT);
-
-        assert_eq!(calculate_extension_size(&junction_boxes), 25272);
-    }
 }
