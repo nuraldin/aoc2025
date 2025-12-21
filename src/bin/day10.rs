@@ -1,16 +1,6 @@
-/*
-    day07:
+use aoc2025::day10::*;
 
-    Part one:
-
-    Part two:
-
-*/
-use aoc2025::time_it;
-
-fn main() {
-    let input = include_str!("../inputs/day08.txt");
-}
+fn main() {}
 
 #[cfg(test)]
 mod tests {
