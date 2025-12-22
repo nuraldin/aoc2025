@@ -32,7 +32,10 @@ pub struct Line {
 }
 
 pub fn fewest_buttons_all_machines(lines: &[Line]) -> usize {
-    lines.iter().map(|line| fewest_buttons_single_machine(line)).sum()
+    lines
+        .iter()
+        .map(|line| fewest_buttons_single_machine(line))
+        .sum()
 }
 
 pub fn fewest_buttons_single_machine(line: &Line) -> usize {
@@ -117,7 +120,10 @@ pub fn min_buttons(line: &Line) -> Vec<usize> {
 
     // brute force all subsets; keep the one with smallest popcount
     let m = btn_masks.len();
-    assert!(m <= 63, "this brute force uses u64 subset bits; raise if needed");
+    assert!(
+        m <= 63,
+        "this brute force uses u64 subset bits; raise if needed"
+    );
 
     let mut best_subset: u64 = 0;
     let mut best_count: u32 = u32::MAX;

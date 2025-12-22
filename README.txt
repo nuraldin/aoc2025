@@ -19,5 +19,5 @@ This time I'll be writing Rust.
     - [x] Day 8
     - [] Day 9
     - [] Day 10
-    - [] Day 11
+    - [x] Day 11
     - [] Day 12

@@ -17,7 +17,7 @@ mod tests {
     #[test]
     fn test_part_one_example_input() {
         let parsed_input = parse_manual(TEST_INPUT);
-        
+
         assert_eq!(fewest_buttons_all_machines(&parsed_input), 7);
     }
 
