@@ -1,7 +1,12 @@
 use aoc2025::day12::*;
 
 fn main() {
-    let input = include_str!("../inputs/day12.txt");
+    let puzzle = parse_puzzle(INPUT);
+
+    println!(
+        "The amount of regions that are solvable are: {}",
+        get_possible_regions(&puzzle)
+    );
 }
 
 #[cfg(test)]
@@ -10,9 +15,8 @@ mod tests {
 
     #[test]
     fn test_part_one_example_input() {
-        let test_input = r#""#;
-
-        assert_eq!(1, 1);
+        let puzzle = parse_puzzle(TEST_INPUT);
+        assert_eq!(get_possible_regions(&puzzle), 2);
     }
 
     #[test]
